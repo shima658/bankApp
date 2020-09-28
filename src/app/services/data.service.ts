@@ -36,12 +36,12 @@ export class DataService {
    }
 
    getTransactions(){
-     return this.http.get("http://localhost:3000/transactions",options);
+     return this.http.get("http://localhost:3000/transactions", options);
     // return this.accountDetails[this.currentUser.acno].transactions;
    }
  
   deleteTransaction(id){
-    return this.http.get("http://localhost:3000/transactions/5f6ec01518fe1d3ee4013ce9"+id,options);
+    return this.http.delete("http://localhost:3000/transactions/"+id, options);
   }
 
 

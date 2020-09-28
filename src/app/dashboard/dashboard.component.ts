@@ -48,13 +48,12 @@ export class DashboardComponent implements OnInit{
    {
       this.dataService.deposit(this.depositForm.value.acno,this.depositForm.value.pin,this.depositForm.value.amt)
       .subscribe((result:any)=>{
-
         alert(result.message);
         alert(result.balance);
        },result => {
          alert(result.error.message);
        })
-       }
+     }
        
  
 
@@ -62,7 +61,6 @@ export class DashboardComponent implements OnInit{
 {
     this.dataService.withdraw(this.withdrawForm.value.acno,this.withdrawForm.value.pin,this.withdrawForm.value.amt)
     .subscribe((result:any)=>{
-
      alert(result.message);
      alert(result.balance);
     },result => {

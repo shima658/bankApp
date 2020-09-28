@@ -26,6 +26,7 @@ export class TransactionHistoryComponent implements OnInit {
      this.dataService.deleteTransaction(transaction._id)
      .subscribe((data:any) =>{
        alert(data.message)
+       this.getTransactions();
      })
    }
 }
