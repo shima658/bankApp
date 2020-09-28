@@ -44,56 +44,65 @@ export class DashboardComponent implements OnInit{
   
 
 
-  //  deposit()
-  //  {
-  //     if(this.depositForm.valid){
-  //     this.dataService.deposit(this.depositForm.value.acno,this.depositForm.value.pin,this.depositForm.value.amt)
-  //     .subscribe((data:any)=>{
-  //       if(data){
-  //       alert("account has been credited");
-  //       }
-  //   },(data)=>{
-  //        alert(data.error.message);
-  //     })
-  //    } else{
-  //   alert("Form is Invalid");
-  //       return;
-  //  }
-  // }
+   deposit()
+   {
+      this.dataService.deposit(this.depositForm.value.acno,this.depositForm.value.pin,this.depositForm.value.amt)
+      .subscribe((result:any)=>{
+
+        alert(result.message);
+        alert(result.balance);
+       },result => {
+         alert(result.error.message);
+       })
+       }
+       
  
-  deposit()
-  {
-    if(this.depositForm.valid){
-      const result=this.dataService.deposit(this.depositForm.value.acno,this.depositForm.value.pin,this.depositForm.value.amt);
+
+  withdraw()
+{
+    this.dataService.withdraw(this.withdrawForm.value.acno,this.withdrawForm.value.pin,this.withdrawForm.value.amt)
+    .subscribe((result:any)=>{
+
+     alert(result.message);
+     alert(result.balance);
+    },result => {
+      alert(result.error.message);
+    })
+    }
+  }
+  // deposit()
+  // {
+  //   if(this.depositForm.valid){
+  //     const result=this.dataService.deposit(this.depositForm.value.acno,this.depositForm.value.pin,this.depositForm.value.amt);
         
-      if(result){
-      alert("account has been credited");
-      }
-  }
-  else{
-    alert("Form is Invalid");
-  }
-  }
+  //     if(result){
+  //     alert("account has been credited");
+  //     }
+  // }
+  // else{
+  //   alert("Form is Invalid");
+  // }
+  // }
     
 
- withdraw()
- {
-   //if(this.withdrawForm.valid)
-  // {
-    const result=this.dataService.withdraw(this.withdrawForm.value.acno,this.withdrawForm.value.pin,this.withdrawForm.value.amt);
+//  withdraw()
+//  {
+//    //if(this.withdrawForm.valid)
+//   // {
+//     const result=this.dataService.withdraw(this.withdrawForm.value.acno,this.withdrawForm.value.pin,this.withdrawForm.value.amt);
    
-    if(result.status==true){
-   alert(result.message);
-   alert(result.balance);
-  }
+//     if(result.status==true){
+//    alert(result.message);
+//    alert(result.balance);
+//   }
   
- else{
-   alert(result.message);
-   alert(result.balance);
+//  else{
+//    alert(result.message);
+//    alert(result.balance);
 
- }
- }
- }
+//  }
+//  }
+//  }
  
  
  

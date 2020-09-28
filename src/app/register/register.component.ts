@@ -35,7 +35,7 @@ pin:['',[Validators.required]],
 
   register(){
     if(this.registerForm.valid){
-      this.dataservice.register(this.registerForm.value.name,this.registerForm.value.acno,this.registerForm.value.pwd,this.registerForm.value.pin)
+      this.dataservice.register(this.registerForm.value.name,this.registerForm.value.acno,this.registerForm.value.pin,this.registerForm.value.pwd)
       .subscribe(data=>{
        if(data){
         alert("Successfully created account.Please login");

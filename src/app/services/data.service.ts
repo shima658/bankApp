@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+
+
+const options = {
+  withCredentials: true
+}
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +36,15 @@ export class DataService {
    }
 
    getTransactions(){
-     return this.accountDetails[this.currentUser.acno].transactions;
+     return this.http.get("http://localhost:3000/transactions",options);
+    // return this.accountDetails[this.currentUser.acno].transactions;
    }
  
+  deleteTransaction(id){
+    return this.http.get("http://localhost:3000/transactions/5f6ec01518fe1d3ee4013ce9"+id,options);
+  }
+
+
    getDetails(){
      if(localStorage.getItem("accountDetails")){
       this.accountDetails = JSON.parse(localStorage.getItem("accountDetails"));
@@ -72,7 +82,7 @@ export class DataService {
       acno,
       password
     }
-    return this.http.post("http://localhost:3000/login", data);
+    return this.http.post("http://localhost:3000/login", data,options);
   }
 
   //   var acno=parseInt(acno1);
@@ -88,84 +98,93 @@ export class DataService {
   //   }
   // }
 
-  deposit(acno1,pinno,amt){
+ // deposit(acno1,pinno,amt){
   //   var acno=parseInt(acno1);
   //   var amount=parseInt(amt);
-  //   const data = {
-  //     acno1,
-  //     pinno,
-  //     amt
+  deposit(acno1,pinno,amt){
+    const data = {
+      acno1,
+      pinno,
+      amt
+    };
+    return this.http.post("http://localhost:3000/deposit", data,options);
+  }
+
+  //   var acno=parseInt(acno1);
+  //   var amount=parseInt(amt);
+  //   var data=this.accountDetails;
+
+  //   if(acno in data){
+  //     let mpin=data[acno].pin;
+  //     if(pinno==mpin){
+  //       data[acno].balance+=amount;
+
+  //       alert(data[acno].balance)
+  //       data[acno].transactions.push({
+  //         amount:amt,
+  //         type:'credit'
+  //       })
+  //       this.saveDetails();
+  //       this.currentUser=data[acno];
+  //       return {
+  //         status:true,
+  //         message:'account has been credited',
+  //         balance:data[acno].balance
+  //       }
+  //     }
   //   }
-  //   return this.http.post("http://localhost:3000/deposit", data);
+  //   else{
+  //     return{
+  //       status:false,
+  //       message:'Incorrect Account Details'
+        
+  //     }
+  //   }
   // }
 
-    var acno=parseInt(acno1);
-    var amount=parseInt(amt);
-    var data=this.accountDetails;
-
-    if(acno in data){
-      let mpin=data[acno].pin;
-      if(pinno==mpin){
-        data[acno].balance+=amount;
-
-        alert(data[acno].balance)
-        data[acno].transactions.push({
-          amount:amt,
-          type:'credit'
-        })
-        this.saveDetails();
-        this.currentUser=data[acno];
-        return {
-          status:true,
-          message:'account has been credited',
-          balance:data[acno].balance
-        }
-      }
-    }
-    else{
-      return{
-        status:false,
-        message:'Incorrect Account Details'
-        
-      }
-    }
-  }
-
   withdraw(acno1,pinno,amt){
-    var acno=parseInt(acno1);
-    var amount=parseInt(amt);
-    var data=this.accountDetails;
-    if(acno in data){
-      let mpin=data[acno].pin;
-    if(data[acno].balance<parseInt(amt)){
-      return{
-        status:false,
-        message:'Insufficient balance',
-        balance:data[acno].balance
-      }
-    }
-
-     else if(pinno==mpin){
-        data[acno].balance -=parseInt(amt);
-        data[acno].transactions.push({
-          amount:amt,
-          type:'debit'
-        })
-        this.saveDetails();
-        this.currentUser=data[acno];
-        return {
-          status:true,
-          message:'account has been debited',
-          balance:data[acno].balance
-        }
-      }
-    }
-    else{
-      return{
-        status:false,
-        message:'Incorrect Account Details'
-      }
-    }
+    const data = {
+      acno1,
+      pinno,
+      amt
+    };
+    return this.http.post("http://localhost:3000/withdraw", data,options);
   }
 }
+//     var acno=parseInt(acno1);
+//     var amount=parseInt(amt);
+//     var data=this.accountDetails;
+//     if(acno in data){
+//       let mpin=data[acno].pin;
+//     if(data[acno].balance<parseInt(amt)){
+//       return{
+//         status:false,
+//         message:'Insufficient balance',
+//         balance:data[acno].balance
+//       }
+//     }
+
+//      else if(pinno==mpin){
+//         data[acno].balance -=parseInt(amt);
+//         data[acno].transactions.push({
+//           amount:amt,
+//           type:'debit'
+//         })
+//         this.saveDetails();
+//         this.currentUser=data[acno];
+//         return {
+//           status:true,
+//           message:'account has been debited',
+//           balance:data[acno].balance
+//         }
+//       }
+//     }
+//     else{
+//       return{
+//         status:false,
+//         message:'Incorrect Account Details'
+//       }
+//     }
+//   }
+// }
  
