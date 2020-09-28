@@ -1,0 +1,66 @@
+
+
+<div class="container">
+
+    <h1>Welcome {{name}}</h1>
+    <a routerLink="/transaction-history/">View Transactions</a>
+      <div class="row">
+      <div class="col">
+          <h4>Deposit</h4>
+
+    <form [formGroup]="depositForm" (ngSubmit)="deposit()">
+    <table>
+
+        <tr>
+            <td>acno</td>
+            <td><input formControlName="acno" type="text"  name="acno" id="acno"></td>
+       </tr>
+
+       <tr>
+        <td>pin</td>
+             <td><input formControlName="pin" type="text"  name="pin" id="pin"></td>
+   </tr>
+
+   <tr>
+    <td>Amount</td>
+             <td><input formControlName="amt" type="text" name="amt" id="amt"></td>
+    </tr>
+
+   <tr>
+   <td colspan="2">  <button type="submit">Deposit</button></td>
+   </tr>
+    </table>
+    </form>
+        </div>  
+      
+
+         <div class="col">
+            <h4> Withdraw </h4>
+            <form [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
+
+            <table>
+                
+             <tr>
+                 <td>acno</td>
+                 <td><input formControlName="acno" type="text" name="acno" id="acno"></td>
+            </tr>
+
+            <tr>
+             <td>pin</td>
+             <td><input formControlName="pin" type="text" name="pin" id="pin"></td>
+        </tr>
+
+        <tr>
+         <td>Amount</td>
+         <td><input formControlName="amt" type="text" name="amt" id="amt"></td>
+    </tr>
+
+    <tr>
+        <td colspan="2"> <button type="submit">Withdraw</button></td>
+  </tr>
+
+</table>
+</form>
+   </div>
+  </div>
+</div>
