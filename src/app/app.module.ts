@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     LoginComponent,
     DashboardComponent,
     RegisterComponent,
-    TransactionHistoryComponent
+    TransactionHistoryComponent,
+    DeleteConfirmationComponent
   ],
   imports: [
     BrowserModule,

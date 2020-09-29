@@ -5,6 +5,7 @@
     
       <div class="row">
       <div class="col">
+          <app-delete-confirmation [id]="id"></app-delete-confirmation>
          
     <table>
          <thead>
@@ -15,10 +16,12 @@
          </thead>
 
         <tbody>
+            <!-- <app-delete-confirmation (onCancel)="onCancel($event)" (onDelete)="onDelete($event)" [id]="id"></app-delete-confirmation> -->
             <tr *ngFor="let transaction of transactions">
+                <td>{{transaction._id}}</td>
                 <td>{{transaction.amount}}</td>
                 <td>{{transaction.typeOfTransaction}}</td>
-                <td (click)="delete(transaction)">Delete</td>
+                <td><button class="btn btn-primary" (click)="showConfirmationDialog(transaction._id)">Delete</button></td>
             </tr>
  
         </tbody>
